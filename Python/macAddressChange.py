@@ -2,6 +2,10 @@
 
 import subprocess
 
+print("[~] Running the command `ifconfig`.")
+
+subprocess.call("ifconfig", shell = True)
+
 interface = input("interface >")
 new_mac = input("new MAC >")
 
