@@ -3,6 +3,13 @@
 # Look into scapy.ls
 
 from scapy.all import arping
+import argparse
+
+def get_arguments():
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-t", "--target", dest = "target", help = "The ip address of the target machine.")
+	options = parser.parse_args()
+	return options
 
 def scan(ip):
 	arp_request = scapy.ARP(pdst = ip)
@@ -21,6 +28,7 @@ def print_result(results_list):
 	for client in results_list:
 		print(client["ip"] + "\t\t" + client["mac"])
 
-
+options = get_arguments()
+scan_result_arg = scan(options.target())
 scan_result = scan("10.10.0.6/24")
 print_result(scan_result)
