@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import subprocess				# Used for commands
-import optparse					# Used for arguments
+import optparse					# Used for arguments : this is depreicated 
 import re						# Used to filter strings Use: pythex.org 		
 
 def get_arguments():
