@@ -7,6 +7,7 @@ def getArguments():
     parser = optparse.OptionParser()
     parser.add_option("-t", "--target", dest="target", help="Target IP / IP range.")
     options, arguments = parser.parse_args()
+    
     return options
 
 def scan(ip):
@@ -14,10 +15,12 @@ def scan(ip):
     broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
     arpRequestBroadcast = broadcast/arpRequest
     answeredList = scapy.srp(arpRequestBroadcast, timeout=1, verbose=False)[0]
+    
     clientsList = []
     for element in answeredList:
         clientDict = {"ip": element[1].psrc, "mac": element[1].hwsrc}
         clientsList.append(client_dict)
+    
     return clientsList
 
 def printResult(results_list):
