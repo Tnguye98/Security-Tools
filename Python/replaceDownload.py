@@ -15,7 +15,7 @@ def processPacket(packet):
 	scapyPacket = scapy.IP(packet.get_payload())
 	if scapyPacket.haslayer(scapy.Raw):
 		if scapyPacket[scapy.TCP].dport == 80:
-			if ".exe" in scapyPacket[scapy.Raw].load.decode():
+			if ".exe" in scapyPacket[scapy.Raw].load.decode() and b"www.rarlab.com" not in scapyPacket[scapy.Raw].load.decode():
 				print("[+] exe Request")
 				ackList.append(scapyPacket[scapy.TCP].ack)
 
